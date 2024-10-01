@@ -121,11 +121,10 @@ public class CurrencyConverter extends JFrame {
             JSONObject conversionRates = (JSONObject) jo.get("conversion_rates");
 
             // Get the rate for the target currency
-            double fromRate = (double) conversionRates.get(from);
             double toRate = (double) conversionRates.get(to);
 
             // Convert the amount
-            return (amount/fromRate) *toRate;
+            return amount*toRate;
 
         } catch (Exception e) {
             e.printStackTrace();
