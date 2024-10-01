@@ -9,7 +9,11 @@ import java.net.http.HttpResponse;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.io.IOException;
-import org.json.JSONObject;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 
 public class CurrencyConverter extends JFrame {
@@ -110,23 +114,24 @@ public class CurrencyConverter extends JFrame {
             System.out.println("API response" + jasonString);
 
             // Parse the JSON response
-
-            JSONObject jsonObject = new JSONObject(jasonString);
+            JSONParser parser = new JSONParser();
+            JSONObject jo = (JSONObject) parser.parse(jasonString);
 
             // Get the conversion rates objects from the JSON
-            JSONObject conversionRates = jsonObject.getJSONObject("conversion_rates");
+            JSONObject conversionRates = (JSONObject) jo.get("conversion_rates");
 
             // Get the rate for the target currency
-            double fromRate = conversionRates.getDouble(from);
-            double toRate = conversionRates.getDouble(to);
+            double fromRate = (double) conversionRates.get(from);
+            double toRate = (double) conversionRates.get(to);
 
             // Convert the amount
-
             return (amount/fromRate) *toRate;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        return 0;
         
     }
 
