@@ -1,24 +1,20 @@
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.http.HttpRequest;
-import java.net.http.HttpRequest.Builder;
 import java.net.http.HttpResponse;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.io.IOException;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
 public class CurrencyConverter extends JFrame {
     // API Setup
-    private static final String API_KEY = "595fab43937e427e317fe6e7";
+    private static final String API_KEY = "";
     private static final String API_URL = "https://v6.exchangerate-api.com/v6/" + API_KEY + "/latest/";
 
     // Constructor to setup the GUI
@@ -28,6 +24,7 @@ public class CurrencyConverter extends JFrame {
         frame.setSize(400,400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(null);
+        frame.setLocationRelativeTo(null);
 
         // Create the Labelse
         JLabel labelAmount = new JLabel("Amount:");
@@ -112,7 +109,6 @@ public class CurrencyConverter extends JFrame {
         try {
             //Make API call to fetch exchange rate
             String jasonString = getExchangeRates(from);
-            System.out.println("API response" + jasonString);
 
             // Parse the JSON response
             JSONParser parser = new JSONParser();
@@ -138,7 +134,7 @@ public class CurrencyConverter extends JFrame {
     // Function to make the API call
     public String getExchangeRates(String baseCurrency){
         // URL with the right covert currency
-        String urlString = API_URL + baseCurrency;
+        String urlString = API_URL + baseCurrency;             
 
         HttpRequest request = HttpRequest.newBuilder()
             .uri(URI.create(urlString))
