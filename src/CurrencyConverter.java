@@ -45,6 +45,7 @@ public class CurrencyConverter extends JFrame {
         // Test Field for amount input
 
         // note: schauen, dass man nur valide Zahlen eingeben kann und nicht alles
+        // Textfield to input amount
         JTextField textAmount = new JTextField();
         textAmount.setBounds(100, 30, 150, 30);
         frame.add(textAmount);
