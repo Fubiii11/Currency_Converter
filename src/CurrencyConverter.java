@@ -13,7 +13,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class CurrencyConverter extends JFrame {
-    // API Setup
+    // API Setup (add API key)
     private static final String API_KEY = "";
     private static final String API_URL = "https://v6.exchangerate-api.com/v6/" + API_KEY + "/latest/";
 
@@ -39,9 +39,6 @@ public class CurrencyConverter extends JFrame {
         labelTo.setBounds(30, 90, 100, 30);
         frame.add(labelTo);
 
-        // Test Field for amount input
-
-        // note: schauen, dass man nur valide Zahlen eingeben kann und nicht alles
         // Textfield to input amount
         JTextField textAmount = new JTextField();
         textAmount.setBounds(100, 30, 150, 30);
@@ -59,7 +56,6 @@ public class CurrencyConverter extends JFrame {
         frame.add(currencyTo);
 
         // Button for converting
-
         JButton buttonConvert  = new JButton("Convert");
         buttonConvert.setBounds(150, 130, 100, 30);
         frame.add(buttonConvert);
@@ -83,15 +79,6 @@ public class CurrencyConverter extends JFrame {
 
                     // Show the result in the label
                     labelResult.setText("Result: " + convertedAmount + " " + toCurrency);
-
-                    // Add the chart note: not finished yet just a space holder
-
-                    JLabel chart = new JLabel("Hello world");
-                    chart.setBounds(100,300,100,30);
-                    frame.add(chart);
-
-                    frame.revalidate();
-                    frame.repaint();
 
                 } catch (NumberFormatException ex) {
                     // If the amount input is not valid, show an error message
